@@ -1,0 +1,2 @@
+# Minigrep
+This tool is the light version of the grep, developed while studing the [rust book](https://rust-book.cs.brown.edu/). It contains basic functionality for searching within a file from the command line.
