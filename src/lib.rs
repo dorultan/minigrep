@@ -42,7 +42,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn match_a_line() {
+    fn case_sensitive() {
         let contents = "\
             It is a beautiful day
             For me and you
