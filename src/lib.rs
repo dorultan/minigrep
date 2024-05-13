@@ -1,4 +1,8 @@
-use std::{env, error::Error, fs, vec};
+//! # Minigrep
+//! The purpose of this crate ⚙️ is to learn rust features, and this crate will not be maintained 🚮.
+
+use std::{env, error::Error, fs};
+
 #[derive(Debug)]
 pub struct Config {
     pub query: String,
@@ -32,6 +36,9 @@ impl Config {
     }
 }
 
+/// This function takes a config as parameter and is being used in main to initialize the program.
+/// Is designed to return either nothing or a dynamic error.
+///
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
     // let lines = search(&config.query, &contents);
@@ -49,6 +56,20 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+/// This function searches thru given contents.
+/// # Example:
+/// ```
+/// let contents = "\
+/// May I have your attention please?
+/// May I have your attention please?
+/// Will the real Slim Shady please stand up?
+/// I repeat, will the real Slim Shady please stand up?
+/// We're gonna have a problem here
+/// ";
+/// let lines = minigrep::search("the real Slim Shady", contents);
+/// assert_eq!(lines, ["Will the real Slim Shady please stand up?", "I repeat, will the real Slim Shady please stand up?"]);
+/// ```
+///
 pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
     content
         .lines()
@@ -56,10 +77,24 @@ pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
         .collect()
 }
 
+/// This search function searches within given contents and returns lines of text regardless of casing.
+/// # Example:
+/// ```
+/// let contents = "\
+/// May I have your attention please?
+/// May I have your attention please?
+/// Will the real Slim Shady please stand up?
+/// I repeat, will the real Slim Shady please stand up?
+/// We're gonna have a problem here
+/// ";
+/// let lines = minigrep::search_case_insensitive("SLiM ShadY", contents);
+/// assert_eq!(lines, ["Will the real Slim Shady please stand up?", "I repeat, will the real Slim Shady please stand up?"]);
+/// ```
+///
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     contents
         .lines()
-        .filter(|line| line.to_lowercase() == query.to_lowercase())
+        .filter(|line| line.to_lowercase().contains(query.to_lowercase().as_str()))
         .collect()
 }
 
