@@ -1,4 +1,4 @@
-//! # Minigrep
+//! # L:itegrep
 //! The purpose of this crate ⚙️ is to learn rust features, and this crate will not be maintained 🚮.
 
 use std::{env, error::Error, fs};
@@ -66,7 +66,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 /// I repeat, will the real Slim Shady please stand up?
 /// We're gonna have a problem here
 /// ";
-/// let lines = minigrep::search("the real Slim Shady", contents);
+/// let lines = litegrep::search("the real Slim Shady", contents);
 /// assert_eq!(lines, ["Will the real Slim Shady please stand up?", "I repeat, will the real Slim Shady please stand up?"]);
 /// ```
 ///
@@ -87,7 +87,7 @@ pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
 /// I repeat, will the real Slim Shady please stand up?
 /// We're gonna have a problem here
 /// ";
-/// let lines = minigrep::search_case_insensitive("SLiM ShadY", contents);
+/// let lines = litegrep::search_case_insensitive("SLiM ShadY", contents);
 /// assert_eq!(lines, ["Will the real Slim Shady please stand up?", "I repeat, will the real Slim Shady please stand up?"]);
 /// ```
 ///
