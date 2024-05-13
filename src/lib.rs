@@ -18,15 +18,13 @@ impl Config {
 
         let file_path = args.next().ok_or("Didn't get a file path")?;
 
-        let mut ignore_case: bool = env::var("IGNORE_CASE")
-            .unwrap_or("false".to_string())
-            .parse()
-            .expect("The variable IGNORE_CASE must be a boolean");
-        let collected_args: Vec<String> = args.collect();
-
-        if collected_args[collected_args.len() - 1] == "--ignore-case" {
-            ignore_case = true;
-        }
+        let ignore_case = match args.next() {
+            Some(v) => v == "--ignore-case",
+            None => env::var("IGNORE_CASE")
+                .unwrap_or("false".to_string())
+                .parse()
+                .expect("The variable IGNORE_CASE must be a boolean"),
+        };
 
         Ok(Self {
             query,
@@ -87,7 +85,7 @@ pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
 /// I repeat, will the real Slim Shady please stand up?
 /// We're gonna have a problem here
 /// ";
-/// let lines = litegrep::search_case_insensitive("SLiM ShadY", contents);
+/// let lines = lightgrep::search_case_insensitive("SLiM ShadY", contents);
 /// assert_eq!(lines, ["Will the real Slim Shady please stand up?", "I repeat, will the real Slim Shady please stand up?"]);
 /// ```
 ///
