@@ -1,5 +1,5 @@
 [package]
-name = "minigrep"
+name = "mini-grepus"
 description = "A basic tool for searching in files for lines of text, based on a query."
 version = "0.1.0"
 edition = "2021"
