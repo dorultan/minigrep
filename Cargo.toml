@@ -1,7 +1,7 @@
 [package]
 name = "litegrep"
 description = "A basic tool for searching in files for lines of text, based on a query."
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 license = "MIT"
 
